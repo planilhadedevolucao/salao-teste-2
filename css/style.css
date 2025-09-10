@@ -6,6 +6,25 @@
   border: 0;
 }
 
+.preload {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  opacity: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 10px auto;
+  margin: 10% auto;
+  border-radius: 50%;
+  background-color: #fff;
+  background-image: url("../img/logo.gif");
+  background-size: 298px 298px;
+  background-position: center; 
+}
+
 body {
   background-image: linear-gradient(45deg, #ebdfeb);
   display: flexbox;
@@ -20,6 +39,7 @@ body {
   max-width: 100%;
   max-height: 100%;
   background-size: cover;
+ 
 }
 
 html {
@@ -104,6 +124,7 @@ html {
 .container {
   align-items: center;
   overflow: hidden;
+  
 }
 
 .linha {
@@ -336,11 +357,13 @@ h6 {
   justify-content: center;
   align-items: center;
   text-align: center;
+  
 }
 
 .servicos {
   background-color: #f7f7f7;
   padding: 10px;
+  
 }
 
 .servico {
@@ -351,6 +374,7 @@ h6 {
   margin: 5px auto;
   justify-content: center;
   margin-right: 9px auto;
+  
 }
 
 .servico h3 {
@@ -898,7 +922,9 @@ li#s5 h3 {
   display: flex;
   border-radius: 20px;
   background-color: #f5f0f3;
+  
 }
+
 
 .slide {
   display: flex;
