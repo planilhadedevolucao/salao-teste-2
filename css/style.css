@@ -16,7 +16,6 @@
   opacity: 100%;
   align-items: center;
   justify-content: center;
-  padding: 10px auto;
   margin: 10% auto;
   border-radius: 50%;
   background-color: #fff;
@@ -1284,3 +1283,4 @@ tbody tr:hover {
     display: none;
   }
 }
+
