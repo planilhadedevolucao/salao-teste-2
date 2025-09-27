@@ -1,0 +1,54 @@
+.navbar {
+  
+  color: rgb(255, 255, 255);
+  padding: 9px 25px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #aca1a8;
+  min-width: 200px;
+  z-index: 0;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.navbar::before {
+  content: "";
+  position: absolute;
+  display: flexbox;
+  top: 0;
+  left: -50px;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #f87cd975);
+  transition: all 1s;
+  z-index: -1;
+  transform: translateX(-120px) skew(-20deg);
+}
+
+.navbar:hover::before {
+  transform: translateX(300px) skew(-20deg);
+}
+
+ .category-entradas { border-left: 4px solid #f59e0b; }
+        .category-massas { border-left: 4px solid #ef4444; }
+        .category-sobremesas { border-left: 4px solid #8b5cf6; }
+        
+        .item-entradas { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
+        .item-massas { background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%); }
+        .item-sobremesas { background: linear-gradient(135deg, #e9d5ff 0%, #ddd6fe 100%); }
+        
+        .selected { transform: scale(1.02); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .addon-selected { background-color: #065f46; color: white; }
+        
+        .price-tag { 
+            background: linear-gradient(45deg, #1f2937, #374151);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
