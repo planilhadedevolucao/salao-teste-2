@@ -128,3 +128,11 @@
             const whatsappUrl = `https://wa.me/${71992561198}?text=${encodedMessage}`;
             window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         }
+
+         const menuToggle = document.querySelector('.menu-toggle');
+        const menuLinks = document.querySelector('.menu-links');
+
+        menuToggle.addEventListener('click', () => {
+            // Alterna a classe 'active' para exibir/ocultar o menu mobile
+            menuLinks.classList.toggle('active');
+        });

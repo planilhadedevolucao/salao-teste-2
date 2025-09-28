@@ -19,7 +19,7 @@
 }
 
 body {
-  background-image: linear-gradient(45deg, #ebdfeb);
+  background-image: linear-gradient(45deg, #ffffff);
   display: flexbox;
   margin: 0;
   padding: 0;
@@ -45,39 +45,141 @@ html {
   vertical-align: baseline;
 }
 
-.navbar {
-  
-  color: rgb(255, 255, 255);
-  padding: 9px 25px;
-  border: none;
-  position: relative;
-  cursor: pointer;
-  box-sizing: border-box;
-  overflow: hidden;
-  background: #aca1a8;
-  min-width: 200px;
-  z-index: 0;
-  letter-spacing: 1px;
-  transition: all 0.3s;
-  font-weight: 600;
+/*
+  ESTILOS GERAIS E CORES
+  * Fundo: Branco
+  * Destaque: Rosa Quartzo (#E0BBE4) - Você pode mudar para Dourado, Bronze, etc.
+  * Fonte: Poppins (limpa e moderna)
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-.navbar::before {
-  content: "";
-  position: absolute;
-  display: flexbox;
-  top: 0;
-  left: -50px;
-  width: 80%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, #f87cd975);
-  transition: all 1s;
-  z-index: -1;
-  transform: translateX(-120px) skew(-20deg);
+body {
+    padding-top: 80px; /* Garante que o conteúdo não fique escondido atrás do navbar fixo */
+    background-color: #f7f7f7; /* Cor de fundo suave para a página */
 }
 
-.navbar:hover::before {
-  transform: translateX(300px) skew(-20deg);
+/* ESTILO DO NAVBAR
+*/
+.navbar-salao {
+    width: 100%;
+    height: 80px;
+    background-color:  #eed6ed;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Sombra suave para flutuação */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    position: fixed; /* Fixa o navbar no topo */
+    top: 0;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+/* LOGO
+*/
+.logo a {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+/* LINKS DE NAVEGAÇÃO
+*/
+.menu-links a {
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+    font-weight: 400;
+    margin-left: 30px;
+    padding-bottom: 5px;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.menu-links a:hover {
+    color: #E0BBE4; /* Cor de destaque ao passar o mouse */
+    border-bottom: 2px solid #E0BBE4;
+}
+
+/* BOTÃO DE AGENDAMENTO (CTA)
+*/
+.btn-agendar {
+    background-color: #E0BBE4; /* Fundo Rosa Quartzo */
+    color: #333 !important; /* Texto escuro */
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px; /* Bordas arredondadas para um visual moderno */
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(224, 187, 228, 0.5); /* Sombra para destaque */
+}
+
+.btn-agendar:hover {
+    background-color: #f7d2f9; /* Cor mais clara no hover */
+    transform: translateY(-2px); /* Efeito sutil de elevação */
+    border-bottom: none !important; /* Remove o sublinhado */
+}
+
+/* ESTILOS PARA MOBILE E RESPONSIVIDADE
+*/
+
+.menu-toggle {
+    display: none; /* Esconde o botão de hambúrguer por padrão (só aparece no mobile) */
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #333;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    /* Ajustes no Navbar para telas menores */
+    .navbar-salao {
+        padding: 0 20px;
+    }
+    
+    /* Mostrar o botão de hambúrguer */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Esconder o botão de agendamento em mobile para dar espaço */
+    .cta-reserva {
+        display: none;
+    }
+
+    /* Configuração do Menu Mobile */
+    .menu-links {
+        position: absolute;
+        top: 80px; /* Fica abaixo do navbar fixo */
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        display: none; /* Oculta o menu por padrão */
+        padding: 10px 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Estilo dos links no menu mobile */
+    .menu-links a {
+        margin: 0;
+        padding: 15px 20px;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* Mostrar o menu quando a classe 'active' for aplicada (pelo JS) */
+    .menu-links.active {
+        display: flex;
+    }
 }
 
 .banner-container {
@@ -176,10 +278,6 @@ html {
   justify-content: center;
 }
 
-p {
-  font-family: lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
-  color: black !important;
-}
 
 @media screen and (max-width: 100px) {
   .item-img {
@@ -195,11 +293,6 @@ p {
   html {
     min-width: 100%;
     max-width: 1041%;
-  }
-
-  .videos {
-    min-width: 100%;
-    max-width: 50vh;
   }
 }
 
@@ -217,37 +310,8 @@ p {
   align-items: center;
 }*/
 
-.mailto {
-  color: #ffffff;
-}
 
-.pago {
-  align-items: center;
-  width: 40%;
-  margin-left: 30%;
-  justify-content: center;
-  display: flex;
-  padding-top: 0;
-  position: relative;
-}
 
-.button {
-  padding: 18px 30px;
-  border: none;
-  position: relative;
-  cursor: pointer;
-  box-sizing: border-box;
-  overflow: hidden;
-  background: #3f3f3f;
-  border-radius: 5px;
-  min-width: 200px;
-  color: #fff;
-  z-index: 0;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  transition: all 0.3s;
-  font-weight: 600;
-}
 
 /*{
   background-image: url("../img/erro404/erro404.png");
@@ -263,20 +327,7 @@ p {
   height: auto;
 }
 
-p {
-  text-align: center;
-  font-family: sans-serif;
 
-  width: 100%;
-  margin: 20px auto;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-
-  border-radius: 10px;
-}
 
 h1 {
   font-style: italic;
@@ -393,39 +444,8 @@ h6 {
   margin: 1px auto;
 }
 
-.contato {
-  background-color: #f7f7f7;
-  padding: 20px;
-  text-align: center;
-  width: 250px;
-  height: 250px;
-  border-radius: 50px;
-}
 
-.contato form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-bottom: 1px solid #000000;
-}
 
-.contato input,
-.contato textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-footer {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  text-align: center;
-  clear: both;
-}
 
 .unha {
   display: flex;
@@ -637,9 +657,6 @@ a {
   }
 }
 
-.pago {
-  width: 40%;
-}
 
 /* Estilo geral do corpo para definir o plano de fundo */
 
@@ -990,3 +1007,6 @@ tbody tr:hover {
             font-weight: 600;
             font-size: 0.9rem;
         }
+
+
+        
