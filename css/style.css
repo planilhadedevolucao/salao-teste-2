@@ -4,6 +4,8 @@
   vertical-align: baseline;
   list-style: none;
   border: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 .preloader {
@@ -19,8 +21,8 @@
 }
 
 body {
-  background-image: linear-gradient(45deg, #ffffff);
-  display: flexbox;
+  background-image: linear-gradient(45deg, #f5f0f4);
+  display: flex;
   margin: 0;
   padding: 0;
   border: 0;
@@ -32,6 +34,7 @@ body {
   max-width: 100%;
   max-height: 100%;
   background-size: cover;
+  padding-top: 80px; /* Garante que o conteúdo não fique escondido atrás do navbar fixo */
 }
 
 html {
@@ -52,134 +55,122 @@ html {
   * Fonte: Poppins (limpa e moderna)
 */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    padding-top: 80px; /* Garante que o conteúdo não fique escondido atrás do navbar fixo */
-    background-color: #f7f7f7; /* Cor de fundo suave para a página */
-}
-
 /* ESTILO DO NAVBAR
 */
 .navbar-salao {
-    width: 100%;
-    height: 80px;
-    background-color:  #eed6ed;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Sombra suave para flutuação */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    position: fixed; /* Fixa o navbar no topo */
-    top: 0;
-    z-index: 1000; /* Garante que fique acima de outros elementos */
+  width: 100%;
+  height: 80px;
+  background-color: #eed6ed;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Sombra suave para flutuação */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  position: fixed; /* Fixa o navbar no topo */
+  top: 0;
+  z-index: 1000; /* Garante que fique acima de outros elementos */
 }
 
 /* LOGO
 */
 .logo a {
-    font-size: 24px;
-    font-weight: 700;
-    color: #333;
-    text-decoration: none;
-    letter-spacing: 0.5px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #eee6e6;
+  text-decoration: none;
+  letter-spacing: 0.5px;
 }
 
 /* LINKS DE NAVEGAÇÃO
 */
 .menu-links a {
-    text-decoration: none;
-    color: #555;
-    font-size: 15px;
-    font-weight: 400;
-    margin-left: 30px;
-    padding-bottom: 5px;
-    transition: color 0.3s, border-bottom 0.3s;
+  text-decoration: none;
+  color: #ece3e3;
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 30px;
+  padding-bottom: 5px;
+  transition: color 0.3s, border-bottom 0.3s;
 }
 
 .menu-links a:hover {
-    color: #E0BBE4; /* Cor de destaque ao passar o mouse */
-    border-bottom: 2px solid #E0BBE4;
+  color: #e0bbe4; /* Cor de destaque ao passar o mouse */
+  border-bottom: 2px solid #e0bbe4;
 }
 
 /* BOTÃO DE AGENDAMENTO (CTA)
 */
 .btn-agendar {
-    background-color: #E0BBE4; /* Fundo Rosa Quartzo */
-    color: #333 !important; /* Texto escuro */
-    font-weight: 600;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 25px; /* Bordas arredondadas para um visual moderno */
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 10px rgba(224, 187, 228, 0.5); /* Sombra para destaque */
+  background-color: #e0bbe4; /* Fundo Rosa Quartzo */
+  color: #d3cdcd !important; /* Texto escuro */
+  font-weight: 600;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px; /* Bordas arredondadas para um visual moderno */
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 10px rgba(224, 187, 228, 0.5); /* Sombra para destaque */
 }
 
 .btn-agendar:hover {
-    background-color: #f7d2f9; /* Cor mais clara no hover */
-    transform: translateY(-2px); /* Efeito sutil de elevação */
-    border-bottom: none !important; /* Remove o sublinhado */
+  background-color: #f7d2f9; /* Cor mais clara no hover */
+  transform: translateY(-2px); /* Efeito sutil de elevação */
+  border-bottom: none !important; /* Remove o sublinhado */
 }
 
 /* ESTILOS PARA MOBILE E RESPONSIVIDADE
 */
 
 .menu-toggle {
-    display: none; /* Esconde o botão de hambúrguer por padrão (só aparece no mobile) */
-    background: none;
-    border: none;
-    font-size: 30px;
-    color: #333;
-    cursor: pointer;
+  display: none; /* Esconde o botão de hambúrguer por padrão (só aparece no mobile) */
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #e2d7d7;
+  cursor: pointer;
 }
 
 @media (max-width: 900px) {
-    /* Ajustes no Navbar para telas menores */
-    .navbar-salao {
-        padding: 0 20px;
-    }
-    
-    /* Mostrar o botão de hambúrguer */
-    .menu-toggle {
-        display: block;
-    }
+  /* Ajustes no Navbar para telas menores */
+  .navbar-salao {
+    padding: 0 20px;
+  }
 
-    /* Esconder o botão de agendamento em mobile para dar espaço */
-    .cta-reserva {
-        display: none;
-    }
+  /* Mostrar o botão de hambúrguer */
+  .menu-toggle {
+    display: block;
+  }
 
-    /* Configuração do Menu Mobile */
-    .menu-links {
-        position: absolute;
-        top: 80px; /* Fica abaixo do navbar fixo */
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        flex-direction: column;
-        display: none; /* Oculta o menu por padrão */
-        padding: 10px 0;
-        transition: all 0.3s ease-in-out;
-    }
+  /* Esconder o botão de agendamento em mobile para dar espaço */
+  .cta-reserva {
+    display: none;
+  }
 
-    /* Estilo dos links no menu mobile */
-    .menu-links a {
-        margin: 0;
-        padding: 15px 20px;
-        width: 100%;
-        border-bottom: 1px solid #eee;
-    }
+  /* Configuração do Menu Mobile */
+  .menu-links {
+    position: absolute;
+    top: 80px; /* Fica abaixo do navbar fixo */
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    display: none; /* Oculta o menu por padrão */
+    padding: 10px 0;
+    transition: all 0.3s ease-in-out;
+  }
 
-    /* Mostrar o menu quando a classe 'active' for aplicada (pelo JS) */
-    .menu-links.active {
-        display: flex;
-    }
+  /* Estilo dos links no menu mobile */
+  .menu-links a {
+    margin: 0;
+    padding: 15px 20px;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* Mostrar o menu quando a classe 'active' for aplicada (pelo JS) */
+  .menu-links.active {
+    display: flex;
+  }
 }
 
 .banner-container {
@@ -278,7 +269,6 @@ body {
   justify-content: center;
 }
 
-
 @media screen and (max-width: 100px) {
   .item-img {
     min-width: 100px;
@@ -310,9 +300,6 @@ body {
   align-items: center;
 }*/
 
-
-
-
 /*{
   background-image: url("../img/erro404/erro404.png");
   background-repeat: no-repeat;
@@ -326,8 +313,6 @@ body {
   width: 100%;
   height: auto;
 }
-
-
 
 h1 {
   font-style: italic;
@@ -443,9 +428,6 @@ h6 {
   border-radius: 10%;
   margin: 1px auto;
 }
-
-
-
 
 .unha {
   display: flex;
@@ -656,7 +638,6 @@ a {
     display: flex;
   }
 }
-
 
 /* Estilo geral do corpo para definir o plano de fundo */
 
@@ -985,28 +966,45 @@ tbody tr:hover {
 
 /*Pedidos personalizados*/
 
- @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        
-        .category-entradas { border-left: 4px solid #f59e0b; }
-        .category-massas { border-left: 4px solid #ef4444; }
-        .category-sobremesas { border-left: 4px solid #8b5cf6; }
-        
-        .item-entradas { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
-        .item-massas { background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%); }
-        .item-sobremesas { background: linear-gradient(135deg, #e9d5ff 0%, #ddd6fe 100%); }
-        
-        .selected { transform: scale(1.02); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
-        .addon-selected { background-color: #065f46; color: white; }
-        
-        .price-tag { 
-            background: linear-gradient(45deg, #1f2937, #374151);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+body {
+  font-family: "Inter", sans-serif;
+}
 
+.category-entradas {
+  border-left: 4px solid #f59e0b;
+}
+.category-massas {
+  border-left: 4px solid #ef4444;
+}
+.category-sobremesas {
+  border-left: 4px solid #8b5cf6;
+}
 
-        
+.item-entradas {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+}
+.item-massas {
+  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+}
+.item-sobremesas {
+  background: linear-gradient(135deg, #e9d5ff 0%, #ddd6fe 100%);
+}
+
+.selected {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+.addon-selected {
+  background-color: #065f46;
+  color: white;
+}
+
+.price-tag {
+  background: linear-gradient(45deg, #1f2937, #374151);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
