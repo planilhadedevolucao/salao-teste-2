@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="css/nav.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+
+   
+
+  <title>NailDesigner</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/f0e17cbf2f.js" crossorigin="anonymous"></script>
+
+
+
+   <style>
+  
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffdaf4 0%, #ffffff 100%);
+           
+          
+        }
+
+        .container {
+            max-width:1200px;
+         
+            margin-top: 15%;
+          
+         
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: rgb(10, 8, 8);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: rgb(7, 3, 3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+               background-color: #b36fb0;
+           
+            color: #080808;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgb(228, 215, 228);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        .image-container {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .nail-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .nail-image {
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(172, 122, 187, 0.8), rgba(118, 75, 162, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            text-align: center;
+            color: rgb(240, 233, 233);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay-content {
+            transform: translateY(0);
+        }
+
+        .overlay-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .overlay-content p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .item-info {
+            padding: 20px;
+        }
+
+        .item-info h3 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .item-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            max-width: 80%;
+            max-height: 80%;
+            background: rgb(255, 255, 255);
+            border-radius: 15px;
+            overflow: hidden;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            padding: 30px;
+        }
+
+        .modal-info h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .modal-info p {
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .modal-price {
+            color: #667eea;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: rgb(255, 255, 255);
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(0,0,0,0.5);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .close:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .filter-buttons {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+<body>
+  <header class="navbar-salao">
+        <div class="logo">
+            <a>Salão & Estética</a>
+        </div>
+        
+        <nav class="menu-links">
+            <a href="index.html">Inicio</a>
+            
+        </nav>
+        
+        <div class="cta-reserva">
+            <a href="#agendamento" class="btn-agendar">AGENDAR HORA</a>
+        </div>
+        
+        <button class="menu-toggle" aria-label="Abrir Menu">
+            &#9776;
+        </button>
+    </header>
+
+
+
+ 
+ 
+         
+
+    
+    
+    </section>
+          
+   
+    
+   
+ 
+        <div class="containe">
+    
+   
+
+ <div>
+  
+
+
+
+    <div class="container">
+        <div class="header">
+            <h1>✨ Galeria de Serviços</h1>
+            <p>Descubra nossos tratamentos de beleza e transformações incríveis</p>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="cabelo">Cabelo</button>
+            <button class="filter-btn" data-filter="unhas">Unhas</button>
+            <button class="filter-btn" data-filter="sobrancelha">Sobrancelha</button>
+            <button class="filter-btn" data-filter="maquiagem">Maquiagem</button>
+        </div>
+
+        <div class="gallery" id="gallery">
+            <!-- Galeria será preenchida pelo JavaScript -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-info">
+                <h2 id="modalTitle"></h2>
+                <p id="modalDescription"></p>
+                <div class="modal-price" id="modalPrice"></div>
+            </div>
+        </div>
+    </div>
+
+     <footer>
+    <div class="footer-moderno">
+        
+        <div class="footer-coluna" id="#">
+            <h3>Navegação</h3>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#servicos">Todos os Serviços</a></li>
+                <li><a href="#portfolio">Portfólio</a></li>
+                <li><a href="#equipe">Nossos Profissionais</a></li>
+                <li><a href="#politicas">Política de Cancelamento</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-coluna">
+            <h3>Localização & Contato</h3>
+            <p>Rua da Beleza, 123 - Centro<br>São Paulo, SP</p>
+            <p><strong>Telefone:</strong> (11) 99888-7766</p>
+            <p><strong>Email:</strong> contato@luxsalao.com.br</p>
+        </div>
+
+        <div class="footer-coluna">
+            <h3>Horário de Funcionamento</h3>
+            <p>Segunda: Fechado</p>
+            <p>Terça a Sábado: 9h às 19h</p>
+            <p>Domingos: Agendamentos Especiais</p>
+        </div>
+    </div>
+    <div class="footer-social">
+       <div class="footer-social" id="contatos">
+    <a href="https://api.whatsapp.com/send?phone=71992561198" target="_blank" class="botao-social whatsapp" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i></a>
+
+    <a href="https://instagram.com/SEUINSTAGRAM" target="_blank" class="botao-social instagram" aria-label="Instagram">
+        <i class="fab fa-instagram"></i></a>
+</div>
+    </div>
+   
+    
+    <div class="footer-copy">
+        <p>&copy; 2025 Andresa Andrade. Todos os direitos reservados.<br> Desenvolvido por Marcus Vinicius.</p>
+    </div>
+</footer>
+
+              
+        
+    <script>
+        // Dados da galeria
+        const galleryData = [
+            {
+                id: 1,
+                title: "Corte Feminino Moderno",
+                description: "Corte contemporâneo com camadas e movimento. Perfeito para valorizar o formato do rosto e dar volume aos cabelos.",
+                price: "R$ 80,00",
+                category: "cabelo",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='hair1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23a855f7'/%3E%3Cstop offset='100%25' style='stop-color:%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='%23faf5ff'/%3E%3Ccircle cx='150' cy='120' r='60' fill='%23fbbf24' stroke='%23ffffff' stroke-width='2'/%3E%3Cpath d='M90 80 Q120 60 150 80 Q180 60 210 80 Q210 120 180 140 Q150 160 120 140 Q90 120 90 80' fill='url(%23hair1)'/%3E%3Cpath d='M120 70 Q140 50 160 70 Q180 50 200 70' stroke='%23ffffff' stroke-width='2' fill='none' opacity='0.5'/%3E%3Ccircle cx='135' cy='110' r='3' fill='%23000'/%3E%3Ccircle cx='165' cy='110' r='3' fill='%23000'/%3E%3Cpath d='M140 130 Q150 135 160 130' stroke='%23000' stroke-width='2' fill='none'/%3E%3C/svg%3E"
+            },
+            {
+                id: 2,
+                title: "Nail Art Delicada",
+                description: "Design floral delicado com detalhes em dourado. Cada unha é uma pequena obra de arte única e sofisticada.",
+                price: "R$ 65,00",
+                category: "unhas",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='nail1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f472b6'/%3E%3Cstop offset='100%25' style='stop-color:%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='%23fdf2f8'/%3E%3Cg transform='translate(50,50)'%3E%3Cellipse cx='40' cy='50' rx='15' ry='40' fill='url(%23nail1)' stroke='%23ffffff' stroke-width='2'/%3E%3Cellipse cx='80' cy='45' rx='15' ry='45' fill='url(%23nail1)' stroke='%23ffffff' stroke-width='2'/%3E%3Cellipse cx='120' cy='40' rx='15' ry='50' fill='url(%23nail1)' stroke='%23ffffff' stroke-width='2'/%3E%3Cellipse cx='160' cy='45' rx='15' ry='45' fill='url(%23nail1)' stroke='%23ffffff' stroke-width='2'/%3E%3Cellipse cx='200' cy='50' rx='15' ry='40' fill='url(%23nail1)' stroke='%23ffffff' stroke-width='2'/%3E%3Ccircle cx='120' cy='30' r='3' fill='%23fbbf24'/%3E%3Ccircle cx='80' cy='35' r='2' fill='%23fbbf24'/%3E%3Ccircle cx='160' cy='35' r='2' fill='%23fbbf24'/%3E%3C/g%3E%3C/svg%3E"
+            },
+            {
+                id: 3,
+                title: "Design de Sobrancelhas",
+                description: "Modelagem profissional com técnica de micropigmentação. Resultado natural e duradouro por até 2 anos.",
+                price: "R$ 120,00",
+                category: "sobrancelha",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='brow1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%236b7280'/%3E%3Cstop offset='100%25' style='stop-color:%23374151'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='%23f9fafb'/%3E%3Ccircle cx='150' cy='125' r='70' fill='%23fbbf24' stroke='%23ffffff' stroke-width='3'/%3E%3Cpath d='M100 100 Q120 90 140 95 Q130 100 100 100' fill='url(%23brow1)'/%3E%3Cpath d='M160 95 Q180 90 200 100 Q170 100 160 95' fill='url(%23brow1)'/%3E%3Ccircle cx='125' cy='115' r='4' fill='%23000'/%3E%3Ccircle cx='175' cy='115' r='4' fill='%23000'/%3E%3Cpath d='M135 140 Q150 145 165 140' stroke='%23000' stroke-width='2' fill='none'/%3E%3Cpath d='M110 85 L130 88 L125 92 Z' fill='%23d97706'/%3E%3Cpath d='M170 88 L190 85 L175 92 Z' fill='%23d97706'/%3E%3C/svg%3E"
+            },
+            {
+                id: 4,
+                title: "Maquiagem para Festa",
+                description: "Make completa para eventos especiais com técnicas profissionais. Inclui base, contorno, olhos e boca.",
+                price: "R$ 150,00",
+                category: "maquiagem",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='makeup1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f59e0b'/%3E%3Cstop offset='100%25' style='stop-color:%23d97706'/%3E%3C/linearGradient%3E%3ClinearGradient id='lips1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ef4444'/%3E%3Cstop offset='100%25' style='stop-color:%23dc2626'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='%23fffbeb'/%3E%3Ccircle cx='150' cy='125' r='75' fill='url(%23makeup1)' stroke='%23ffffff' stroke-width='3'/%3E%3Cpath d='M110 105 Q125 95 140 105 Q125 110 110 105' fill='%23a855f7'/%3E%3Cpath d='M160 105 Q175 95 190 105 Q175 110 160 105' fill='%23a855f7'/%3E%3Ccircle cx='125' cy='115' r='5' fill='%23000'/%3E%3Ccircle cx='175' cy='115' r='5' fill='%23000'/%3E%3Cpath d='M130 150 Q150 160 170 150 Q150 165 130 150' fill='url(%23lips1)'/%3E%3Cpath d='M120 90 Q135 85 150 90 Q165 85 180 90' stroke='%23374151' stroke-width='3' fill='none'/%3E%3Ccircle cx='110' cy='120' r='8' fill='%23f472b6' opacity='0.6'/%3E%3Ccircle cx='190' cy='120' r='8' fill='%23f472b6' opacity='0.6'/%3E%3C/svg%3E"
+            },
+            {
+                id: 5,
+                title: "Coloração Profissional",
+                description: "Transformação completa com coloração premium. Técnicas modernas para resultados naturais e vibrantes.",
+                price: "R$ 180,00",
+                category: "cabelo",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='color1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ef4444'/%3E%3Cstop offset='50%25' style='stop-color:%23f97316'/%3E%3Cstop offset='100%25' style='stop-color:%23eab308'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='%23fef3c7'/%3E%3Ccircle cx='150' cy='120' r='60' fill='%23fbbf24' stroke='%23ffffff' stroke-width='2'/%3E%3Cpath d='M80 70 Q110 40 150 70 Q190 40 220 70 Q220 130 190 160 Q150 180 110 160 Q80 130 80 70' fill='url(%23color1)'/%3E%3Cpath d='M100 60 Q130 30 160 60 Q190 30 220 60' stroke='%23ffffff' stroke-width='3' fill='none' opacity='0.7'/%3E%3Cpath d='M90 90 Q120 70 150 90 Q180 70 210 90' stroke='%23ffffff' stroke-width='2' fill='none' opacity='0.5'/%3E%3Ccircle cx='135' cy='110' r='3' fill='%23000'/%3E%3Ccircle cx='165' cy='110' r='3' fill='%23000'/%3E%3Cpath d='M140 130 Q150 135 160 130' stroke='%23000' stroke-width='2' fill='none'/%3E%3C/svg%3E"
+            },
+            {
+                id: 6,
+                title: "Unhas em Gel",
+                description: "Alongamento e esmaltação em gel com acabamento profissional. Duração de até 4 semanas com brilho intenso.",
+                price: "R$ 85,00",
+                category: "unhas",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='gel1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%236366f1'/%3E%3Cstop offset='100%25' style='stop-color:%234338ca'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='%23eef2ff'/%3E%3Cg transform='translate(50,50)'%3E%3Cellipse cx='40' cy='60' rx='18' ry='50' fill='url(%23gel1)' stroke='%23ffffff' stroke-width='2'/%3E%3Cellipse cx='80' cy='55' rx='18' ry='55' fill='url(%23gel1)' stroke='%23ffffff' stroke-width='2'/%3E%3Cellipse cx='120' cy='50' rx='18' ry='60' fill='url(%23gel1)' stroke='%23ffffff' stroke-width='2'/%3E%3Cellipse cx='160' cy='55' rx='18' ry='55' fill='url(%23gel1)' stroke='%23ffffff' stroke-width='2'/%3E%3Cellipse cx='200' cy='60' rx='18' ry='50' fill='url(%23gel1)' stroke='%23ffffff' stroke-width='2'/%3E%3Cellipse cx='120' cy='30' rx='40' ry='10' fill='%23ffffff' opacity='0.4'/%3E%3Ctext x='120' y='140' text-anchor='middle' fill='%234338ca' font-family='Arial' font-size='14' font-weight='bold'%3EGEL UV%3C/text%3E%3C/g%3E%3C/svg%3E"
+            },
+            {
+                id: 7,
+                title: "Micropigmentação Fio a Fio",
+                description: "Técnica avançada de micropigmentação para sobrancelhas naturais. Resultado realista e duradouro.",
+                price: "R$ 350,00",
+                category: "sobrancelha",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='micro1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23a855f7'/%3E%3Cstop offset='100%25' style='stop-color:%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='%23faf5ff'/%3E%3Ccircle cx='150' cy='125' r='70' fill='%23fbbf24' stroke='%23ffffff' stroke-width='3'/%3E%3Cpath d='M95 95 Q115 85 135 90 Q125 95 95 95' fill='%23374151'/%3E%3Cpath d='M165 90 Q185 85 205 95 Q175 95 165 90' fill='%23374151'/%3E%3Cline x1='100' y1='92' x2='130' y2='88' stroke='%23000' stroke-width='1'/%3E%3Cline x1='105' y1='90' x2='125' y2='87' stroke='%23000' stroke-width='1'/%3E%3Cline x1='110' y1='88' x2='120' y2='86' stroke='%23000' stroke-width='1'/%3E%3Cline x1='170' y1='88' x2='200' y2='92' stroke='%23000' stroke-width='1'/%3E%3Cline x1='175' y1='87' x2='195' y2='90' stroke='%23000' stroke-width='1'/%3E%3Cline x1='180' y1='86' x2='190' y2='88' stroke='%23000' stroke-width='1'/%3E%3Ccircle cx='125' cy='115' r='4' fill='%23000'/%3E%3Ccircle cx='175' cy='115' r='4' fill='%23000'/%3E%3Cpath d='M135 140 Q150 145 165 140' stroke='%23000' stroke-width='2' fill='none'/%3E%3C/svg%3E"
+            },
+            {
+                id: 8,
+                title: "Maquiagem Noiva",
+                description: "Make especial para o dia mais importante. Técnica de longa duração com produtos premium e acabamento impecável.",
+                price: "R$ 280,00",
+                category: "maquiagem",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='250' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='bride1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f8fafc'/%3E%3Cstop offset='100%25' style='stop-color:%23e2e8f0'/%3E%3C/linearGradient%3E%3ClinearGradient id='blush1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f472b6'/%3E%3Cstop offset='100%25' style='stop-color:%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='%23ffffff'/%3E%3Ccircle cx='150' cy='125' r='75' fill='url(%23bride1)' stroke='%23d1d5db' stroke-width='2'/%3E%3Cpath d='M110 100 Q125 90 140 100 Q125 105 110 100' fill='%23e5e7eb'/%3E%3Cpath d='M160 100 Q175 90 190 100 Q175 105 160 100' fill='%23e5e7eb'/%3E%3Ccircle cx='125' cy='115' r='5' fill='%23000'/%3E%3Ccircle cx='175' cy='115' r='5' fill='%23000'/%3E%3Cpath d='M130 155 Q150 165 170 155 Q150 170 130 155' fill='%23f472b6'/%3E%3Cpath d='M115 85 Q130 80 145 85 Q160 80 175 85 Q185 80 195 85' stroke='%23374151' stroke-width='2' fill='none'/%3E%3Ccircle cx='105' cy='125' r='12' fill='url(%23blush1)' opacity='0.3'/%3E%3Ccircle cx='195' cy='125' r='12' fill='url(%23blush1)' opacity='0.3'/%3E%3Cpath d='M120 95 L125 100 L130 95' stroke='%23a855f7' stroke-width='2' fill='none'/%3E%3Cpath d='M170 95 L175 100 L180 95' stroke='%23a855f7' stroke-width='2' fill='none'/%3E%3C/svg%3E"
+            }
+        ];
+
+        // Elementos DOM
+        const gallery = document.getElementById('gallery');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalPrice = document.getElementById('modalPrice');
+        const closeModal = document.querySelector('.close');
+
+        // Renderizar galeria
+        function renderGallery(items = galleryData) {
+            gallery.innerHTML = '';
+            
+            items.forEach(item => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = `gallery-item ${item.category}`;
+                galleryItem.innerHTML = `
+                    <div class="image-container">
+                        <img class="nail-image" src="${item.image}" alt="${item.title}">
+                        <div class="category-tag">${getCategoryName(item.category)}</div>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Ver Detalhes</h3>
+                                <p>Clique para ampliar</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-info">
+                        <h3>${item.title}</h3>
+                        <p>${item.description.substring(0, 80)}...</p>
+                        <div class="price">${item.price}</div>
+                    </div>
+                `;
+                
+                galleryItem.addEventListener('click', () => openModal(item));
+                gallery.appendChild(galleryItem);
+            });
+        }
+
+        // Obter nome da categoria
+        function getCategoryName(category) {
+            const categories = {
+                'cabelo': 'Cabelo',
+                'unhas': 'Unhas',
+                'sobrancelha': 'Sobrancelha',
+                'maquiagem': 'Maquiagem'
+            };
+            return categories[category] || category;
+        }
+
+        // Filtrar galeria
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.classList.remove('hidden');
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.classList.add('hidden');
+                    }, 300);
+                }
+            });
+        }
+
+        // Abrir modal
+        function openModal(item) {
+            modalImage.src = item.image;
+            modalTitle.textContent = item.title;
+            modalDescription.textContent = item.description;
+            modalPrice.textContent = item.price;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fechar modal
+        function closeModalFunction() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remover classe active de todos os botões
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Adicionar classe active ao botão clicado
+                button.classList.add('active');
+                // Filtrar galeria
+                filterGallery(button.dataset.filter);
+            });
+        });
+
+        closeModal.addEventListener('click', closeModalFunction);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModalFunction();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModalFunction();
+            }
+        });
+
+        // Inicializar galeria
+        renderGallery();
+
+        // Animação de entrada
+        window.addEventListener('load', () => {
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Inicializar com animação
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'all 0.5s ease';
+        });
+    </script>
+    <script src="script/scripts.js"></script>
+    <script src="script/pedido.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9844c6578558ddeb',t:'MTc1ODc0MzA0OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+
+
+
+    
+
+
+      
+   
+
+
+
